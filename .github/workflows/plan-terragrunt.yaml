@@ -2,8 +2,8 @@ name: Plan Terragrunt
 
 on:
   pull_request:
-    branches:
-      - dev
+#    branches:
+#      - dev
     paths:
       - "infra/**"
 
