@@ -1,19 +1,22 @@
-name: Terragrunt Plan
+name: Apply Terragrunt 
 
 on:
   push:
-#    paths:
-#      - "infra/**"
+    branches:
+      - dev
+    paths:
+      - "infra/**"
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_DEFAULT_REGION: ap-northeast-1
+  TERRAGRUNT_VERSION: "v0.71.1" # terragruntのバージョンを環境変数として定義
 
 jobs:
-  terragrunt-plan:
+  apply-terragrunt:
     runs-on: ubuntu-latest
-    environment: dev  # 環境の指定を追加
+    environment: dev
 
     defaults:
       run:
@@ -30,7 +33,7 @@ jobs:
 
       - name: Install Terragrunt
         run: |
-          curl -L -o terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v0.71.1/terragrunt_linux_amd64
+          curl -L -o terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/${TERRAGRUNT_VERSION}/terragrunt_linux_amd64
           chmod +x terragrunt
           sudo mv terragrunt /usr/local/bin/
 
