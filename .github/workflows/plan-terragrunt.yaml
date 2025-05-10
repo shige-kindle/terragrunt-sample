@@ -41,4 +41,4 @@ jobs:
 
 
       - name: Terragrunt Plan
-        run: terragrunt run-all plan
+        run: terragrunt run-all plan --terragrunt-no-lock 
