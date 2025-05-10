@@ -35,7 +35,10 @@ jobs:
           sudo mv terragrunt /usr/local/bin/
 
       - name: Terragrunt Init
-        run: terragrunt init
+        run: |
+          pwd
+          terragrunt init
+
 
       - name: Terragrunt Plan
         run: terragrunt plan
