@@ -37,16 +37,16 @@ jobs:
           sudo mv terragrunt /usr/local/bin/
       - name: Terragrunt Plan
         run: |
-          terragrunt plan -no-color > plan.txt
-        continue-on-error: true
+          terragrunt run-all plan
   
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          scan-type: 'fs'
+          #scan-type: 'fs'
+          scan-type: 'config'
           scan-ref: '.'
           format: 'table'
           exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
+          #ignore-unfixed: true
+          #vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH' 
